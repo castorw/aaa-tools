@@ -1,0 +1,23 @@
+{
+    "name": "ldap-groups",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc -p ."
+    },
+    "author": "Lubomir Kaplan <castor@castor.sk>",
+    "license": "ISC",
+    "dependencies": {
+        "ldapjs": "^1.0.2",
+        "mz": "^2.7.0",
+        "reflect-metadata": "^0.1.12",
+        "rxjs": "^5.5.6",
+        "typescript": "^2.8.3"
+    },
+    "devDependencies": {
+        "@types/ldapjs": "^1.0.3",
+        "@types/mz": "0.0.32",
+        "@types/node": "^10.1.2"
+    }
+}

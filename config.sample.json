@@ -1,0 +1,15 @@
+{
+    "avp": {
+        "attributeName": "Fortinet-Group-Name",
+        "valuePrefix": "ldap:"
+    },
+    "ldap": {
+        "host": "ldap.example.com",
+        "port": 389,
+        "user": "EXAMPLE\\admin",
+        "password": "topsecret",
+        "baseDn": "OU=People,dc=example,dc=com",
+        "timeout": 5000,
+        "format": "cn"
+    }
+}
