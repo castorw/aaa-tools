@@ -15,22 +15,12 @@ class SimpleTotpAuthenticator {
         };
         if (otplib.authenticator.verify({ secret, token })) {
             const cleanPassword = /(.*)[0-9]{6}$/.exec(password)[1];
-            console.log(util.format("User-Password := %s", cleanPassword));
-            console.log(util.format("Cleartext-Password := %s", cleanPassword));
+            console.log(util.format("User-Password := \"%s\"", cleanPassword));
+            console.log(util.format("Cleartext-Password := \"%s\"", cleanPassword));
             return this.exit();
         } else {
             return this.exit(new Error("otp token invalid"));
         }
-    }
-
-    public runCleanup(password: string): void {
-        if (password.length < 6 || !/[0-9]{6}$/.test(password)) {
-            return this.exit(new Error("password does not end with otp token"));
-        }
-        const cleanPassword = /(.*)[0-9]{6}$/.exec(password)[1];
-        console.log(util.format("User-Password := %s", cleanPassword));
-        console.log(util.format("Cleartext-Password := %s", cleanPassword));
-        return this.exit();
     }
 
     public runGenerateSecret(): void {
@@ -54,11 +44,6 @@ switch (command) {
         const password = process.env["USER_PASSWORD"] || process.env["CLEARTEXT_PASSWORD"] || process.argv[3] || null;
         const secret = process.env["TOTP_SECRET"] || process.argv[4] || null;
         authenticator.runAuthenticate(password, secret);
-        break;
-    }
-    case "cleanup": {
-        const password = process.env["USER_PASSWORD"] || process.env["CLEARTEXT_PASSWORD"] || process.argv[3] || null;
-        authenticator.runCleanup(password);
         break;
     }
     case "generate": {

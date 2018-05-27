@@ -57,12 +57,12 @@ This tool implements simple TOTP authentication mechanism. OTP token is inserted
 Configure the following `rlm_exec` modules. Example configuration from */etc/freeradius/3.0/mods-enabled/exec*:
 ```
 exec exec.totp_auth {
-	wait = yes
-    input_pairs = request
+    wait = yes
+    input_pairs = control
     output_pairs = request
     shell_escape = no
     timeout = 10
-    program = "/opt/aaa-tools/simple-totp-auth.js authenticate %{User-Password} %{TOTP-Secret}"
+    program = "/opt/aaa-tools/simple-totp-auth.js authenticate %{request:User-Password} %{control:TOTP-Secret}"
 }
 ```
 
@@ -90,7 +90,7 @@ You can deliver the `TOTP-Secret` in any way you consider fit for your user case
 test01  TOTP-Secret := PEZDMZJQMYVXMS3TNJHW2TRWIZHGMZKL
 ```
 
-Secrets can be generated in various ways, but the tool has a built-in generator:
+Secrets can be generated in various ways, however the tool also has a built-in generator:
 ```bash
 $ /opt/aaa-tools/simple-totp-auth.js generate
 ```
